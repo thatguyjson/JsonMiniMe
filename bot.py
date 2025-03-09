@@ -46,15 +46,6 @@ bot = commands.Bot(command_prefix='?', intents=intents)
 # this is used somewhere i think???
 message_ids = {}
 
-for filename in os.listdir(cogs_folder):
-    if filename.endswith('.py'):  # Only load Python files
-        cog_name = f"cogs.{filename[:-3]}"  # Remove the .py extension
-        try:
-            bot.load_extension(cog_name)
-            print(f"Loaded cog: {cog_name}")
-        except Exception as e:
-            print(f"Failed to load cog {cog_name}: {e}")
-
 """
 DB Connection below grabs all DB info related stuff in order to connect from Constants
 """
@@ -149,6 +140,16 @@ async def on_ready():
     await log_to_channel('started QOTD')
     keep_connection_alive.start()
     await log_to_channel('started task to keep DB connection alive.')
+    
+    for filename in os.listdir(cogs_folder):
+        if filename.endswith('.py'):  # Only load Python files
+            cog_name = f"cogs.{filename[:-3]}"  # Remove the .py extension
+            try:
+                bot.load_extension(cog_name)
+                await log_to_channel(f"Loaded cog: {cog_name}")
+            except Exception as e:
+                await log_to_channel(f"Failed to load cog {cog_name}: {e}")
+            
     await log_to_channel(f'{dripMention} BOT IS SET UP AND READY TO GO!')
 
 bot.run(botToken)
