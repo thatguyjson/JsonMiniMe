@@ -45,6 +45,7 @@ bot = commands.Bot(command_prefix='?', intents=intents)
 
 # this is used somewhere i think???
 message_ids = {}
+cogs_folder = 'cogs'
 
 """
 DB Connection below grabs all DB info related stuff in order to connect from Constants
@@ -93,7 +94,7 @@ async def on_ready():
         await log_to_channel("Could not find the welcome channel.")
     else:
         await log_to_channel(f'Logged in as {bot.user.name}. Now commencing all startup processes. Please wait est: 25 seconds...') # time.sleep(x) multuplied by 5
-        time.sleep(5)
+        await asyncio.sleep(5)
 
     # Verify Roles Message
     channel1 = bot.get_channel(1280805997790887978)
