@@ -51,7 +51,7 @@ class EventsCog(commands.Cog):
 
     @commands.event
     async def on_raw_reaction_add(self, payload):
-        guild = bot.get_guild(payload.guild_id)
+        guild = self.bot.get_guild(payload.guild_id)
         member = guild.get_member(payload.user_id)
     
         if member is None or guild is None:
@@ -87,7 +87,7 @@ class EventsCog(commands.Cog):
     
     @commands.event
     async def on_raw_reaction_remove(self, payload):
-        guild = bot.get_guild(payload.guild_id)
+        guild = self.bot.get_guild(payload.guild_id)
         member = guild.get_member(payload.user_id)
     
         if member is None or guild is None:
@@ -123,10 +123,10 @@ class EventsCog(commands.Cog):
 
     @commands.event
     async def on_message_delete(message):
-        if message.author.bot:
+        if message.author.self.bot:
             return
         
-        staff_channel = bot.get_channel(STAFF_CHANNEL_ID)
+        staff_channel = self.bot.get_channel(STAFF_CHANNEL_ID)
         if staff_channel:
             embed = nextcord.Embed(title="Message Deleted", color=nextcord.Color.red())
             embed.add_field(name="User", value=message.author.name, inline=True)
