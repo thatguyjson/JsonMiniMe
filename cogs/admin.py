@@ -140,7 +140,7 @@ class AdminCog(commands.Cog):
         for i in range(1, 4):
             await close_message.edit(content=f"Restarting Bot, Please wait{'.' * i}")
             time.sleep(0.5)
-        await bot.close()
+        await self.bot.close()
 
 
 
