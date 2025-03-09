@@ -20,6 +20,7 @@ Constants takes variables from constants.py in Pebblehost and uses that.
 """
 from constants import *
 from constVariables import *
+from bot import db, cursor
 
 '''
 Grim commands cog. This is gonna be used so Grim 
