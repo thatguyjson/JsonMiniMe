@@ -4,7 +4,6 @@
 ?add_question <question> -- Allows for Owners to add questions to the live database
 ?kick <user> -- Allows for Owners to kick users
 ?evict <user> -- Allows for Owners to ban users
-?role <user> <role> -- Allows for Owners to give a user a role by using a command
 ?praise <user> -- Alows for any member to send 1 of 11 random praise messages to a user
 ?purge <number> -- Allows for an Owner to delete the last {number} of messages sent in a channel
 ?aboutme -- Allows for users to view their User Profile via EMBED
@@ -13,12 +12,6 @@
 ?whois <user> -- Gives every user the option to view someones aboutme user profile if available!
 ?add_dob <user> <YYYY-MM-DD> - Lets Drip hard code a bday to use in the happy bday task soon
 ?sql <query> -- Allows for owners to run Queries from discord itself instead of having to open the discord panel
-```
-# Current Bot Events
-```
-on_member_join -- When a new member joins, it automatically sends 1 of 11 random messages to the welcomeChannel
-on_message_delete -- When a member deletes a message, it will be logged and sent to a Owners only channel
-on_ready -- Runs when the bot starts up.
 ```
 # Cool side stuff ig?
 
