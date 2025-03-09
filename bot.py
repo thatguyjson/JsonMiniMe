@@ -3,7 +3,6 @@ JsonMiniMe is a discord bot created using the Nextcord API Wrapper.
 This was created by Jason, also known as @Drip___ on discord!
 For any questions, feel free to add and dm me on discord "drip___"
 '''
-
 import nextcord
 import mysql.connector
 import asyncio
@@ -19,8 +18,7 @@ from datetime import datetime, timedelta, timezone
 """
 Constants takes variables from constants.py in Pebblehost and uses that.
 """
-from constants import botToken
-from constants import DBhost, DBuser, DBpassword, DBdatabase, DBport
+from constants import *
 from constVariables import *
 
 """
@@ -45,3 +43,25 @@ bot = commands.Bot(command_prefix='?', intents=intents)
 
 # this is used somewhere i think???
 message_ids = {}
+
+"""
+DB Connection below grabs all DB info related stuff in order to connect from Constants
+"""
+db = mysql.connector.connect(
+    host=DBhost,
+    user=DBuser,
+    password=DBpassword,
+    database=DBdatabase,
+    port=DBport
+)
+cursor = db.cursor()
+
+'''
+async functions that im adding to run asap ig?
+'''
+async def is_owner(ctx):
+    role = nextcord.utils.get(ctx.guild.roles, name=ROLE_NAME)
+    return role in ctx.author.roles
+
+async def is_drip(ctx):
+    return ctx.author.id == 639904427624628224
