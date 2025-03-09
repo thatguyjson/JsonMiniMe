@@ -35,21 +35,14 @@ class TasksCog(commands.Cog):
         Task to send the Question of the Day (QOTD) at 6 AM PST daily.
         """
         try:
-            # Calculate current Pacific Time (PST or PDT)
-            utc_now = datetime.utcnow()
-            pacific_offset = timedelta(hours=-8 if utc_now.timetuple().tm_isdst == 0 else -7)  # Adjust for DST
-            pacific_time = utc_now + pacific_offset
+            pacific = pytz.timezone("US/Pacific")
+            pacific_time = datetime.now(pacific)
     
             # Check if it's exactly 6:00 AM PST
             if pacific_time.hour == 6 and pacific_time.minute == 0:
                 # Fetch a random question from the 'christmas' table
-                cursor.execute("SELECT question FROM christmas ORDER BY RAND() LIMIT 1")
+                cursor.execute("SELECT quotes FROM QuotesDB ORDER BY RAND() LIMIT 1")
                 question = cursor.fetchone()
-    
-                if not question:
-                    # If no questions in 'christmas', fallback to 'QuotesDB'
-                    cursor.execute("SELECT Quotes FROM QuotesDB ORDER BY RAND() LIMIT 1")
-                    question = cursor.fetchone()
     
                 if question:
                     question_text = question[0]  # Extract question text
@@ -60,23 +53,17 @@ class TasksCog(commands.Cog):
                         await qotd_channel.send(
                             "@everyone\n🌟 **Question of the Day** 🌟\n{}".format(question_text)
                         )
-    
+
                         # Move the used question to the appropriate table
-                        if "christmas" in question:
-                            cursor.execute("DELETE FROM christmas WHERE question = %s", (question_text,))
-                        else:
-                            cursor.execute("INSERT INTO UsedQuotesDB (UsedQuotes) VALUES (%s)", (question_text,))
-                            cursor.execute("DELETE FROM QuotesDB WHERE Quotes = %s", (question_text,))
-                        
+                        cursor.execute("INSERT INTO UsedQuotesDB (UsedQuotes) VALUES (%s)", (question_text,))
+                        cursor.execute("DELETE FROM QuotesDB WHERE Quotes = %s", (question_text,))
                         db.commit()
                 else:
                     # Log if no questions are left in both tables
                     await log_to_channel(
-                        "<@639904427624628224> URGENT!!! No questions left in both 'christmas' and 'QuotesDB' tables!"
+                        "<@639904427624628224> URGENT!!! No questions left in 'QuotesDB' table!"
                     )
-            else:
-                # Sleep asynchronously until the next minute
-                await asyncio.sleep(60)
+                    
         except Exception as e:
             # Log errors for debugging
             await log_to_channel(f"Error in QOTD task: {e}")
