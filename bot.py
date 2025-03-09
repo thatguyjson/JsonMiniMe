@@ -12,6 +12,7 @@ import requests
 import json
 import re
 import pytz
+import os
 from nextcord.ext import commands, tasks
 from nextcord.ui import View, Select
 from datetime import datetime, timedelta, timezone
@@ -44,6 +45,15 @@ bot = commands.Bot(command_prefix='?', intents=intents)
 
 # this is used somewhere i think???
 message_ids = {}
+
+for filename in os.listdir(cogs_folder):
+    if filename.endswith('.py'):  # Only load Python files
+        cog_name = f"cogs.{filename[:-3]}"  # Remove the .py extension
+        try:
+            bot.load_extension(cog_name)
+            print(f"Loaded cog: {cog_name}")
+        except Exception as e:
+            print(f"Failed to load cog {cog_name}: {e}")
 
 """
 DB Connection below grabs all DB info related stuff in order to connect from Constants
