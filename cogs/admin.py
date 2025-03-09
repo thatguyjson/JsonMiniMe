@@ -20,6 +20,7 @@ Constants takes variables from constants.py in Pebblehost and uses that.
 """
 from constants import *
 from constVariables import *
+from bot import db, cursor
 
 '''
 Admin commands cog
