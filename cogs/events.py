@@ -29,7 +29,7 @@ class EventsCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.event
+    @commands.Cog.listener()
     async def on_member_join(self, member):
         if welcomeChannel is not None:
             message_index = random.randint(1, 11)
@@ -49,7 +49,7 @@ class EventsCog(commands.Cog):
             welcome_message = messages[message_index]
             await welcomeChannel.send(welcome_message)
 
-    @commands.event
+    @commands.Cog.listener()
     async def on_raw_reaction_add(self, payload):
         guild = self.bot.get_guild(payload.guild_id)
         member = guild.get_member(payload.user_id)
@@ -85,7 +85,7 @@ class EventsCog(commands.Cog):
                         await log_to_channel(f"Assigned {role_name} to {member.display_name}")
                     break
     
-    @commands.event
+    @commands.Cog.listener()
     async def on_raw_reaction_remove(self, payload):
         guild = self.bot.get_guild(payload.guild_id)
         member = guild.get_member(payload.user_id)
@@ -121,7 +121,7 @@ class EventsCog(commands.Cog):
                         await log_to_channel(f"Removed {role_name} from {member.display_name}")
                     break
 
-    @commands.event
+    @commands.Cog.listener()
     async def on_message_delete(message):
         if message.author.self.bot:
             return
