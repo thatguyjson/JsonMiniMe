@@ -78,8 +78,8 @@ class TasksCog(commands.Cog):
           if debug_channel:
             await debug_channel.send(aliveQuote)
 
-    @tasks.loop(minutes=5)
-    async def check_github_releases():
+    @tasks.loop(minutes=1)
+    async def check_github_releases(self):
         url = f"https://api.github.com/repos/{GITHUB_REPO}/releases/latest"
         headers = {"Accept": "application/vnd.github.v3+json"}
         response = requests.get(url, headers=headers)
