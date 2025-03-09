@@ -11,6 +11,7 @@ VerifyRole = "✅"
 ServerUpdateRole = "✨"
 EventUpdateRole = "☄️"
 
+cogs_folder = 'cogs'
 dripMention = "<@639904427624628224>" # can use this in (f'x') text to @ myself in discord
 dripID = "639904427624628224"
 color_role = {
