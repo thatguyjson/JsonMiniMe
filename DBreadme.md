@@ -60,15 +60,3 @@ The database is hosted through **PebbleHost MYSQL**. It's called `customer_83400
   }
 ]
 ```
----
-
-#### **Christmas** (DEPRECATED)
-*Previously used for Christmas related questions*
-```json
-[
-  {
-    "id": "PRIMARY_KEY",
-    "questions": "TEXT"
-  }
-]
-```
