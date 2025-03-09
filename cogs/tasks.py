@@ -78,29 +78,5 @@ class TasksCog(commands.Cog):
           if debug_channel:
             await debug_channel.send(aliveQuote)
 
-    @tasks.loop(minutes=1)
-    async def check_github_releases(self):
-        url = f"https://api.github.com/repos/{GITHUB_REPO}/releases/latest"
-        headers = {"Accept": "application/vnd.github.v3+json"}
-        response = requests.get(url, headers=headers)
-        
-        if response.status_code == 200:
-            release = response.json()
-            release_id = release["id"]
-            
-            if LAST_RELEASE is None:
-                LAST_RELEASE = release_id  # Initialize on first run
-                return
-    
-            if release_id != LAST_RELEASE:
-                LAST_RELEASE = release_id
-                title = release["name"]
-                url = release["html_url"]
-                message = f"🚀 New release: [{title}]({url})!"
-    
-                channel = bot.get_channel(CHANNEL_ID)
-                if channel:
-                    await channel.send(message)
-
 def setup(bot):
     bot.add_cog(TasksCog(bot))
