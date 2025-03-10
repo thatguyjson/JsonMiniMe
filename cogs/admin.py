@@ -195,6 +195,8 @@ class AdminCog(commands.Cog):
 @ everyone
 
 # 🚀  __**New Release just dropped! See it below!**__
+-# Sent by <@{ctx.author.id}> ~ Thanks :3
+
 
 ### *Release Info:*
 - Release Name: `{release_name}`
