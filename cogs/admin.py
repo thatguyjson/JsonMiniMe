@@ -152,7 +152,15 @@ class AdminCog(commands.Cog):
             time.sleep(0.5)
         await self.bot.close()
 
+    @commands.command()
+    @commands.check(is_drip)
+    async def newrelease(self, ctx):
+        await ctx.send(f"Good job on the new release <{ctx.author.id}>! Can you please provide the name of the release?")
 
+        await ctx.send(f"Thank you for that <{ctx.author.id}>! Can you please provide the version in this format? v0.0.0")
+        
+        await ctx.send("Drafting message and sending in <#1299230549789118526>!")
+        time.sleep(3)
 
 def setup(bot):
     bot.add_cog(AdminCog(bot))
