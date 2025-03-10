@@ -88,9 +88,9 @@ for filename in os.listdir(cogs_folder):
             cog_name = f"cogs.{filename[:-3]}"  # Remove the .py extension
             try:
                 bot.load_extension(cog_name)
-                await log_to_channel(f"Loaded cog: {cog_name}")
+                print(f"Loaded cog: {cog_name}")
             except Exception as e:
-                await log_to_channel(f"Failed to load cog {cog_name}: {e}")
+                print(f"Failed to load cog {cog_name}: {e}")
 
 """
 down below is on_ready + bot.run
