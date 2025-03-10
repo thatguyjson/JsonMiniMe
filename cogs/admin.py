@@ -167,7 +167,7 @@ class AdminCog(commands.Cog):
             return
 
         
-        await ctx.send(f"Thank you for that <{ctx.author.id}>! Can you please provide the version in this format? v0.0.0")
+        await ctx.send(f"Thank you for that <@{ctx.author.id}>! Can you please provide the version in this format? v0.0.0")
         try:
             RVmsg = await self.bot.wait_for("message", check=check, timeout=60)
             release_version = RVmsg.content
@@ -194,14 +194,14 @@ class AdminCog(commands.Cog):
         await channel.send(f'''
         @ everyone
 
-        🚀  New Release just dropped! See it below!
+    🚀  New Release just dropped! See it below!
 
-        Release Info:
+    Release Info:
         - Release Name: {release_name}
-        - Release Version: {release_version}
+    - Release Version: {release_version}
 
-        See the full release down below! Thank you!!
-        [Click Me For The Release!]({release_link})
+    See the full release down below! Thank you!!
+    [Click Me For The Release!]({release_link})
         ''')
 
 def setup(bot):
