@@ -96,9 +96,9 @@ class TasksCog(commands.Cog):
                 LAST_RELEASE = release_id
                 title = release["name"]
                 url = release["html_url"]
-                message = f"🚀 New release: [{title}]({url})!"
+                message = f"@everyone\n🚀 New release: [{title}]({url})!"
 
-                channel = self.bot.get_channel(CHANNEL_ID)
+                channel = self.bot.get_channel(BOT_CHANGELOG_CHANNEL_ID)
                 if channel:
                     await channel.send(message)
 
