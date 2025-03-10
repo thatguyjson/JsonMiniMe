@@ -145,11 +145,12 @@ async def on_ready():
             await color_message_sent.add_reaction(emoji)
     except Exception as e:
         await log_to_channel(f"Error setting up color roles: {e}")
-    qotd_task.start()
+    tasks_cog = bot.get_cog('TasksCog')
+    tasks_cog.qotd_task.start()
     await log_to_channel('started QOTD')
-    keep_connection_alive.start()
+    tasks_cog.keep_connection_alive.start()
     await log_to_channel('started DB connection')
-    check_github_releases.start()
+    tasks_cog.check_github_releases.start()
     await log_to_channel("started checking for github releases")
     await log_to_channel(f'{dripMention} BOT IS SET UP AND READY TO GO!')
 
