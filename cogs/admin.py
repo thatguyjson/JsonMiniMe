@@ -192,17 +192,17 @@ class AdminCog(commands.Cog):
 
         channel = self.bot.get_channel(BOT_CHANGELOG_CHANNEL_ID)
         await channel.send(f'''
-        @ everyone
+@ everyone
 
-    🚀  New Release just dropped! See it below!
+# 🚀  __**New Release just dropped! See it below!**__
 
-    Release Info:
-        - Release Name: {release_name}
-    - Release Version: {release_version}
+### *Release Info:*
+- Release Name: `{release_name}`
+- Release Version: `{release_version}`
 
-    See the full release down below! Thank you!!
-    [Click Me For The Release!]({release_link})
-        ''')
+### *See the full release down below! Thank you!!*
+[Click Me For The Release!]({release_link})
+''')
 
 def setup(bot):
     bot.add_cog(AdminCog(bot))
