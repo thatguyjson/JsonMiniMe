@@ -23,6 +23,16 @@ from constVariables import *
 from bot import db, cursor
 
 '''
+def owner shit
+'''
+async def is_owner(ctx):
+    role = nextcord.utils.get(ctx.guild.roles, name=ROLE_NAME)
+    return role in ctx.author.roles
+
+async def is_drip(ctx):
+    return ctx.author.id == 639904427624628224
+
+'''
 Admin commands cog
 '''
 class AdminCog(commands.Cog):
