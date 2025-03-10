@@ -87,6 +87,8 @@ class TasksCog(commands.Cog):
         if response.status_code == 200:
             release = response.json()
             release_id = release["id"]
+            temp_channel = self.bot.get_channel(1307966892853432391)
+            await temp_channel.send("grabbed new git release!")
 
             if LAST_RELEASE is None:
                 LAST_RELEASE = release_id  # Initialize on first run
