@@ -160,7 +160,7 @@ class AdminCog(commands.Cog):
         await ctx.send(f"Good job on the new release <@{ctx.author.id}>! Can you please provide the name of the release?")
         try:
             RNmsg = await self.bot.wait_for("message", check=check, timeout=60)
-            release_name = RNmsg.content()
+            release_name = RNmsg.content
             await ctx.send(f"Gotcha, the release name is {release_name}!")
         except asyncio.TimeoutError:
             await ctx.send("You took too long to respond! ❌")
@@ -170,7 +170,7 @@ class AdminCog(commands.Cog):
         await ctx.send(f"Thank you for that <{ctx.author.id}>! Can you please provide the version in this format? v0.0.0")
         try:
             RVmsg = await self.bot.wait_for("message", check=check, timeout=60)
-            release_version = RVmsg.content()
+            release_version = RVmsg.content
             await ctx.send(f"Gotcha, the release version is {release_version}!")
         except asyncio.TimeoutError:
             await ctx.send("You took too long to respond! ❌")
@@ -179,7 +179,7 @@ class AdminCog(commands.Cog):
         await ctx.send(f"Amazing! Lastly, can you please provide me with the Release link?")
         try:
             RLmsg = await self.bot.wait_for("message", check=check, timeout=60)
-            release_link = RLmsg.content()
+            release_link = RLmsg.content
             await ctx.send(f"Thank you! Thats all I need!")
         except asyncio.TimeoutError:
             await ctx.send("You took too long to respond! ❌")
