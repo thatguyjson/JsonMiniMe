@@ -48,7 +48,7 @@ class TasksCog(commands.Cog):
                     question_text = question[0]  # Extract question text
     
                     # Send the QOTD to the specified channel
-                    qotd_channel = bot.get_channel(QOTD_CHANNEL_ID)
+                    qotd_channel = self.bot.get_channel(QOTD_CHANNEL_ID)
                     if qotd_channel:
                         await qotd_channel.send(
                             "@everyone\n🌟 **Question of the Day** 🌟\n{}".format(question_text)

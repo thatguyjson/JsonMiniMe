@@ -143,13 +143,13 @@ async def on_ready():
 
         for _, emoji in color_role.values():
             await color_message_sent.add_reaction(emoji)
-            await asyncio.sleep(1)  # Add delay to avoid hitting rate limits
     except Exception as e:
         await log_to_channel(f"Error setting up color roles: {e}")
-    qotd_task.start()
+    tasks_cog = bot.get_cog('TasksCog')
+    tasks_cog.qotd_task.start()
     await log_to_channel('started QOTD')
-    keep_connection_alive.start()
-    await log_to_channel('started task to keep DB connection alive.')
+    tasks_cog.keep_connection_alive.start()
+    await log_to_channel('started DB connection')
     await log_to_channel(f'{dripMention} BOT IS SET UP AND READY TO GO!')
 
 bot.run(botToken)
