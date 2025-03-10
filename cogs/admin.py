@@ -152,7 +152,55 @@ class AdminCog(commands.Cog):
             time.sleep(0.5)
         await self.bot.close()
 
+    @commands.command()
+    @commands.check(is_drip)
+    async def newrelease(self, ctx):
+        await ctx.send(f"Good job on the new release <{ctx.author.id}>! Can you please provide the name of the release?")
+        try:
+            RNmsg = await self.bot.wait_for("message", check=check, timeout=60)
+            release_name = RNmsg.content()
+            await ctx.send(f"Gotcha, the release name is {release_name}!")
+        except asyncio.TimeoutError:
+            await ctx.send("You took too long to respond! ❌")
+            return
 
+        
+        await ctx.send(f"Thank you for that <{ctx.author.id}>! Can you please provide the version in this format? v0.0.0")
+        try:
+            RVmsg = await self.bot.wait_for("message", check=check, timeout=60)
+            release_version = RVmsg.content()
+            await ctx.send(f"Gotcha, the release version is {release_version}!")
+        except asyncio.TimeoutError:
+            await ctx.send("You took too long to respond! ❌")
+            return
+
+        await ctx.send(f"Amazing! Lastly, can you please provide me with the Release link?")
+        try:
+            RLmsg = await self.bot.wait_for("message", check=check, timeout=60)
+            release_link = RLmsg.content()
+            await ctx.send(f"Thank you! Thats all I need!")
+        except asyncio.TimeoutError:
+            await ctx.send("You took too long to respond! ❌")
+            return
+        
+        draft_message = await ctx.send("Drafting message and sending in <#1299230549789118526>")
+        for i in range(1, 4):
+            await draft_message.edit(content=f"Drafting message and sending in <#1299230549789118526>{'.' * i}")
+            time.sleep(0.5)
+
+        channel = self.bot.get_channel(BOT_CHANGELOG_CHANNEL_ID)
+        await channel.send(f'''
+        @ everyone
+
+        🚀  New Release just dropped! See it below!
+
+        Release Info:
+        - Release Name: {release_name}
+        - Release Version: {release_version}
+
+        See the full release down below! Thank you!!
+        [Click Me For The Release!]({release_link})
+        ''')
 
 def setup(bot):
     bot.add_cog(AdminCog(bot))
