@@ -149,7 +149,9 @@ async def on_ready():
     qotd_task.start()
     await log_to_channel('started QOTD')
     keep_connection_alive.start()
-    await log_to_channel('started task to keep DB connection alive.')
+    await log_to_channel('started DB connection')
+    check_github_releases.start()
+    await log_to_channel("started checking for github releases")
     await log_to_channel(f'{dripMention} BOT IS SET UP AND READY TO GO!')
 
 bot.run(botToken)
