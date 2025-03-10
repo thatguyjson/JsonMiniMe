@@ -192,7 +192,7 @@ class AdminCog(commands.Cog):
 
         channel = self.bot.get_channel(BOT_CHANGELOG_CHANNEL_ID)
         await channel.send(f'''
-@ everyone
+||@everyone||
 
 # 🚀  __**New Release just dropped! See it below!**__
 -# Sent by <@{ctx.author.id}> ~ Thanks :3
