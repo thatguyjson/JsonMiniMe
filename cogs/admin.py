@@ -32,6 +32,8 @@ async def is_owner(ctx):
 async def is_drip(ctx):
     return ctx.author.id == 639904427624628224
 
+async def check(msg):
+    return msg.author == ctx.author and msg.channel == ctx.channel
 '''
 Admin commands cog
 '''
@@ -155,7 +157,7 @@ class AdminCog(commands.Cog):
     @commands.command()
     @commands.check(is_drip)
     async def newrelease(self, ctx):
-        await ctx.send(f"Good job on the new release <{ctx.author.id}>! Can you please provide the name of the release?")
+        await ctx.send(f"Good job on the new release <@{ctx.author.id}>! Can you please provide the name of the release?")
         try:
             RNmsg = await self.bot.wait_for("message", check=check, timeout=60)
             release_name = RNmsg.content()
