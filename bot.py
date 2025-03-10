@@ -143,7 +143,6 @@ async def on_ready():
 
         for _, emoji in color_role.values():
             await color_message_sent.add_reaction(emoji)
-            await asyncio.sleep(1)  # Add delay to avoid hitting rate limits
     except Exception as e:
         await log_to_channel(f"Error setting up color roles: {e}")
     qotd_task.start()
