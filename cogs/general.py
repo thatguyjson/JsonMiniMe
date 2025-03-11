@@ -48,7 +48,7 @@ class GeneralCog(commands.Cog):
             }
           await ctx.send(messages[message_index])
 
-    @commands.tree.command()
+    @commands.slash_command()
     async def ping(self, interaction: nextcord.Interaction):
         await interaction.response.send_message("Shut the fuck up")
 
