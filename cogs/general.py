@@ -11,7 +11,7 @@ import json
 import re
 import pytz
 import os
-from nextcord.ext import commands, tasks, slash_commands
+from nextcord.ext import commands, tasks
 from nextcord.ui import View, Select
 from datetime import datetime, timedelta, timezone
 
@@ -48,7 +48,7 @@ class GeneralCog(commands.Cog):
             }
           await ctx.send(messages[message_index])
 
-    @commands.slash_command(name="ping", description="Ping the bot")
+    @commands.slash_command(guild_ids=[GUILD_ID])
     async def ping(self, interaction: nextcord.Interaction):
         await interaction.response.send_message("Shut the fuck up")
 
