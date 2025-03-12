@@ -32,14 +32,15 @@ async def is_owner(ctx):
 async def is_drip(ctx):
     return ctx.author.id == 639904427624628224
 
-def check(msg):
-    return msg.author == ctx.author and msg.channel == ctx.channel
 '''
 Admin commands cog
 '''
 class AdminCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+        
+    def check(self, msg):
+        return msg.author == ctx.author and msg.channel == ctx.channel
 
     @commands.command()
     @commands.check(is_owner)
