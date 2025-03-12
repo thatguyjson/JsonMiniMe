@@ -142,14 +142,7 @@ class AdminCog(commands.Cog):
     @commands.command()
     @commands.check(is_drip)
     async def restart(self, ctx):
-        if ctx.author.id != dripID:
-            await ctx.send(f"Please dont use this command unless youre {dripMention}! Thanks!")
-            return
-            
-        close_message = await ctx.send("Restarting Bot, Please wait")
-        for i in range(1, 4):
-            await close_message.edit(content=f"Restarting Bot, Please wait{'.' * i}")
-            time.sleep(0.5)
+        close_message = await ctx.send("Aw man... ill leave then 🥺")
         await self.bot.close()
 
     @commands.command()
@@ -194,7 +187,7 @@ class AdminCog(commands.Cog):
 
         channel = self.bot.get_channel(BOT_CHANGELOG_CHANNEL_ID)
         await channel.send(f'''
-||@everyone||
+||<@&1304734483089719328>||
 
 # 🚀  __**New Release just dropped! See it below!**__
 -# Sent by <@{ctx.author.id}> ~ Thanks :3
