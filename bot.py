@@ -102,8 +102,7 @@ async def on_ready():
     if welcomeChannel is None:
         await log_to_channel("Could not find the welcome channel.")
     else:
-        await log_to_channel(f'Logged in as {bot.user.name}. Now commencing all startup processes. Please wait est: 25 seconds...') # time.sleep(x) multuplied by 5
-        await asyncio.sleep(5)
+        await log_to_channel(f'Logged in as {bot.user.name}. Now commencing all startup processes.')
 
     # Verify Roles Message
     channel1 = bot.get_channel(1280805997790887978)
@@ -126,10 +125,13 @@ async def on_ready():
             await server_update_message.add_reaction("✨")
             event_update_message = await channel2.send("React with ☄️ to gain the Event Updates Role")
             await event_update_message.add_reaction("☄️")
+            bot_changelog_message = await channel2.send("React with 🤖 to be notified of any Bot Changes")
+            await bot_changelog_message.add_reaction("🤖")
 
             message_ids["server_update_message_id"] = server_update_message.id
             message_ids["event_update_message_id"] = event_update_message.id
-            await log_to_channel("Server Updates and Event Updates roles setup complete.")
+            message_ids["bot_changelog_message_id"] = bot_changelog_message.id
+            await log_to_channel("Server, Event, and Bot role setup is complete.")
         except Exception as e:
             await log_to_channel(f"Error setting up update roles: {e}")
 

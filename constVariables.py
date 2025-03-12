@@ -9,10 +9,12 @@ ROLE_NAME = "*"
 VerifyName = "Members"
 ServerUpdateName = "Server Updates"
 EventUpdateName = "Event Updates"
+BotChangelogName = "Bot Changelog"
 
 VerifyRole = "✅"
 ServerUpdateRole = "✨"
 EventUpdateRole = "☄️"
+BotChangelogRole = "🤖"
 
 LAST_RELEASE = None
 GITHUB_REPO = 'thatguyjson/JsonMiniMe'

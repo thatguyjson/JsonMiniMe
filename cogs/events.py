@@ -57,7 +57,7 @@ class EventsCog(commands.Cog):
     
         if member is None or guild is None:
             return
-        if payload.user_id == 1280817864357445663: #checks if bot
+        if payload.user_id == 1280817864357445663:
             return
     
         if payload.message_id == message_ids.get('verify_message_id') and str(payload.emoji) == VerifyRole:
@@ -77,6 +77,13 @@ class EventsCog(commands.Cog):
             if role is not None:
                 await member.add_roles(role)
                 await log_to_channel(f"Assigned {EventUpdateName} to {member.display_name}")
+
+        elif payload.message_id == message_ids.get('bot_changelog_message_id') and str(payload.emoji) == BotChangelogRole:
+            role = nextcord.utils.get(guild.roles, name=BotChangelogName)
+            if role is not None:
+                await member.add_roles(role)
+                await log_to_channel(f"Assigned {BotChangelogName} to {member.display_name}")
+                
         elif payload.message_id == message_ids.get('color_message_id'):
             for role_name, emoji in color_role.values():
                 if str(payload.emoji) == emoji:
@@ -93,7 +100,7 @@ class EventsCog(commands.Cog):
     
         if member is None or guild is None:
             return
-        if payload.user_id == 1280817864357445663: # checks if bot
+        if payload.user_id == 1280817864357445663:
             return
     
         if payload.message_id == message_ids.get('verify_message_id') and str(payload.emoji) == VerifyRole:
@@ -113,6 +120,13 @@ class EventsCog(commands.Cog):
             if role is not None:
                 await member.remove_roles(role)
                 await log_to_channel(f"Removed {EventUpdateName} from {member.display_name}")
+
+        elif payload.message_id == message_ids.get('bot_changelog_message_id') and str(payload.emoji) == BotChangelogRole:
+            role = nextcord.utils.get(guild.roles, name=BotChangelogName)
+            if role is not None:
+                await member.remove_roles(role)
+                await log_to_channel(f"Removed {BotChangelogName} from {member.display_name}")
+                
         elif payload.message_id == message_ids.get('color_message_id'):
             for role_name, emoji in color_role.values():
                 if str(payload.emoji) == emoji:
@@ -134,8 +148,6 @@ class EventsCog(commands.Cog):
             embed.add_field(name="Channel", value=message.channel.name, inline=True)
             embed.add_field(name="Content", value=message.content or "No content", inline=False)
             await staff_channel.send(embed=embed)
-
-
 
 def setup(bot):
     bot.add_cog(EventsCog(bot))
