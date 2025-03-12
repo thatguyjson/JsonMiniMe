@@ -122,7 +122,7 @@ class EventsCog(commands.Cog):
                     break
 
     @commands.Cog.listener()
-    async def on_message_delete(message):
+    async def on_message_delete(self, message):
         if message.author.self.bot:
             return
         
