@@ -167,15 +167,7 @@ class AdminCog(commands.Cog):
             RVmsg = await self.bot.wait_for("message", check=check, timeout=60)
             release_version = RVmsg.content
             await ctx.send(f"Gotcha, the release version is {release_version}!")
-        except asyncio.TimeoutError:
-            await ctx.send("You took too long to respond! ❌")
-            return
-
-        await ctx.send(f"Amazing! Lastly, can you please provide me with the Release link?")
-        try:
-            RLmsg = await self.bot.wait_for("message", check=check, timeout=60)
-            release_link = RLmsg.content
-            await ctx.send(f"Thank you! Thats all I need!")
+            release_link = f"https://github.com/thatguyjson/JsonMiniMe/releases/tag/{release_version}"
         except asyncio.TimeoutError:
             await ctx.send("You took too long to respond! ❌")
             return
