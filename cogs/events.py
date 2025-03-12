@@ -31,6 +31,7 @@ class EventsCog(commands.Cog):
 
     @commands.Cog.listener()
     async def on_member_join(self, member):
+        welcomeChannel = self.bot.get_channel(welcomeChannel_ID)
         if welcomeChannel is not None:
             message_index = random.randint(1, 11)
             messages = {
