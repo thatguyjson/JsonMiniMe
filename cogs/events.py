@@ -123,7 +123,7 @@ class EventsCog(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message_delete(self, message):
-        if message.author.self.bot:
+        if message.author.self.self.bot:
             return
         
         staff_channel = self.bot.get_channel(STAFF_CHANNEL_ID)
