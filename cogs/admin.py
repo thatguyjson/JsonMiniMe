@@ -156,7 +156,7 @@ class AdminCog(commands.Cog):
     @commands.check(is_drip)
     async def newrelease(self, ctx):
         
-        def check(self, msg):
+        def check(msg):
             return msg.author == ctx.author and msg.channel == ctx.channel
         
         await ctx.send(f"Good job on the new release <@{ctx.author.id}>! Can you please provide the name of the release?")
