@@ -38,9 +38,6 @@ Admin commands cog
 class AdminCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        
-    def check(self, msg):
-        return msg.author == ctx.author and msg.channel == ctx.channel
 
     @commands.command()
     @commands.check(is_owner)
@@ -158,6 +155,10 @@ class AdminCog(commands.Cog):
     @commands.command()
     @commands.check(is_drip)
     async def newrelease(self, ctx):
+        
+        def check(self, msg):
+            return msg.author == ctx.author and msg.channel == ctx.channel
+        
         await ctx.send(f"Good job on the new release <@{ctx.author.id}>! Can you please provide the name of the release?")
         try:
             RNmsg = await self.bot.wait_for("message", check=check, timeout=60)
