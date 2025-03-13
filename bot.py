@@ -42,6 +42,7 @@ to use the intents we previously set to True above so that we can use it and
 make the bot more versatile.
 '''
 bot = commands.Bot(command_prefix='?', intents=intents)
+forfun = commands.Bot(command_prefix='!', intents=intents)
 
 # this is used somewhere i think???
 message_ids = {}
@@ -95,6 +96,15 @@ for filename in os.listdir(cogs_folder):
 """
 down below is on_ready + bot.run
 """
+@forfun.event
+async def on_ready():
+    global welcomeChannel
+    welcomeChannel = bot.get_channel(1280813683789791305)
+    if welcomeChannel is None:
+        await log_to_channel("Could not find the welcome channel.")
+    else:
+        await log_to_channel(f'Logged in as {forfun.user.name}.')
+    
 @bot.event
 async def on_ready():
     global welcomeChannel
@@ -154,4 +164,11 @@ async def on_ready():
     await log_to_channel('started DB connection')
     await log_to_channel(f'{dripMention} BOT IS SET UP AND READY TO GO!')
 
-bot.run(botToken)
+async def run_bots():
+    task1 = asyncio.create_task(bot.start(botToken))
+    task2 = asyncio.create_task(forfun.start(botToken2))
+
+    await asyncio.gather(task1, task2)
+
+if __name__ == "__main__":
+    asyncio.run(run_bots())
