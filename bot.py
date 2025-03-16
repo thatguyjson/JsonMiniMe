@@ -34,6 +34,7 @@ intents.message_content = True
 intents.reactions = True
 intents.guilds = True
 intents.guild_messages = True
+intents.messages = True
 
 '''
 commands.bot(command_prefix='', intents=intents), we are setting the prefix
@@ -58,6 +59,7 @@ db = mysql.connector.connect(
     port=DBport
 )
 cursor = db.cursor()
+cursor_dict = db.cursor(dictionary=True)
 
 '''
 async functions that im adding to run asap ig?
@@ -152,6 +154,8 @@ async def on_ready():
     await log_to_channel('started QOTD')
     tasks_cog.keep_connection_alive.start()
     await log_to_channel('started DB connection')
+    tasks_cog.refresh_to_do_list.start()
+    await log_to_channel("started refreshing to do list")
     await log_to_channel(f'{dripMention} BOT IS SET UP AND READY TO GO!')
 
 bot.run(botToken)

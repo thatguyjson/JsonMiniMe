@@ -4,6 +4,7 @@ LOG_CHANNEL_ID = 1299264058436091915
 welcomeChannel_ID = 1280813683789791305
 BOT_CHANGELOG_CHANNEL_ID = 1299230549789118526
 GUILD_ID = 841809575380516885
+TO_DO_CHANNEL_ID = 1350764183498526781
 
 ROLE_NAME = "*"
 VerifyName = "Members"
@@ -15,6 +16,7 @@ VerifyRole = "✅"
 ServerUpdateRole = "✨"
 EventUpdateRole = "☄️"
 BotChangelogRole = "🤖"
+remove_task_emoji = "❌"
 
 LAST_RELEASE = None
 GITHUB_REPO = 'thatguyjson/JsonMiniMe'

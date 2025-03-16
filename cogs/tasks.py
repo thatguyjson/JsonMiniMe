@@ -20,7 +20,7 @@ Constants takes variables from constants.py in Pebblehost and uses that.
 """
 from constants import *
 from constVariables import *
-from bot import db, cursor
+from bot import db, cursor, cursor_dict
 
 '''
 Tasks cog
@@ -69,7 +69,7 @@ class TasksCog(commands.Cog):
             await log_to_channel(f"Error in QOTD task: {e}")
     
     
-    @tasks.loop(hours=3)
+    @tasks.loop(hours=1)
     async def keep_connection_alive(self):
         cursor.execute("SELECT UsedQuotes FROM UsedQuotesDB where id = 3")
         aliveQuote = cursor.fetchone()
@@ -77,6 +77,50 @@ class TasksCog(commands.Cog):
           debug_channel = self.bot.get_channel(1307966892853432391)
           if debug_channel:
             await debug_channel.send(aliveQuote)
+
+    @tasks.loop(minutes=1)
+    async def refresh_to_do_list(self):
+        cursor_dict.execute("SELECT * FROM TO_DO")
+        tasks = cursor_dict.fetchall()
+        task_message = "\n".join([f"ID: {row['id']} //  Task: {row['task']}" for row in tasks])
+        channel = self.bot.get_channel(TO_DO_CHANNEL_ID)
+        await channel.purge(limit=100)
+        if task_message:
+            await channel.send(f"""
+# Welcome to the TO_DO Channel! 
+
+## In order to add a new task please use
+`?newtask <task>`
+### For example:
+- ?newtask Buy cat litter from costco
+
+
+## In order to complete a task, please use
+`?completetask <id>`
+### For example:
+- ?completetask 2
+
+
+# Here are the current outstanding tasks!
+{task_message}""")
+        else:
+            await channel.send(f"""
+# Welcome to the TO_DO Channel! 
+
+## In order to add a new task please use
+`?newtask <task>`
+### For example:
+- ?newtask Buy cat litter from costco
+
+
+## In order to complete a task, please use
+`?completetask <id>`
+### For example:
+- ?completetask 2
+
+
+# Currently no tasks! Add one using instructions above!""")
+        
 
 def setup(bot):
     bot.add_cog(TasksCog(bot))

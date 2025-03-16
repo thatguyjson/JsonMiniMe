@@ -146,6 +146,28 @@ class AdminCog(commands.Cog):
         await self.bot.close()
 
     @commands.command()
+    @commands.check(is_owner)
+    async def newtask(self, ctx, *, message: str = None):
+        if message == None:
+            await ctx.send("Please try again and enter a task to add")
+            await ctx.message.delete()
+            return
+
+        cursor.execute("INSERT INTO TO_DO (task) VALUES (%s)", (message,))
+        db.commit()
+        await ctx.message.delete()
+
+    @commands.command()
+    @commands.check(is_owner)
+    async def completetask(self, ctx, *, id: int = 0):
+        if id == 0:
+            await ctx.send("Please enter a tasks ID to complete it.")
+            return
+        cursor.execute(f"delete from TO_DO where id = %s;", (id,))
+        db.commit()
+        await ctx.message.delete()
+    
+    @commands.command()
     @commands.check(is_drip)
     async def newrelease(self, ctx):
         
