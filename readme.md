@@ -13,6 +13,8 @@
 ?add_dob <user> <YYYY-MM-DD> - Lets Drip hard code a bday to use in the happy bday task soon
 ?sql <query> -- Allows for owners to run Queries from discord itself instead of having to open the discord panel
 ?newrelease -- Begins an interaction with the user to send a new release of github repo!
+?newtask <task> -- Adds a task to the to do list
+?completetask <id> -- Uses ID associated with a task to remove it from the to do list
 ```
 # Cool side stuff ig?
 
