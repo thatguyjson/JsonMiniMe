@@ -78,5 +78,9 @@ class TasksCog(commands.Cog):
           if debug_channel:
             await debug_channel.send(aliveQuote)
 
+    @tasks.loop(minutes=5)
+    async def refresh_to_do_list(self):
+        cursor_dict.execute("SELECT * FROM TO_DO
+
 def setup(bot):
     bot.add_cog(TasksCog(bot))
