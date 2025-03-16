@@ -80,7 +80,16 @@ class TasksCog(commands.Cog):
 
     @tasks.loop(minutes=5)
     async def refresh_to_do_list(self):
-        cursor_dict.execute("SELECT * FROM TO_DO
+        cursor_dict.execute("SELECT * FROM TO_DO")
+        tasks = cursor_dict.fetchall()
+        task_message = "\n".join([f"{row['id']}: {row['task']}" for row in tasks])
+        channel = self.bot.get_channel(TO_DO_CHANNEL_ID)
+        await channel.purge(limit=100)
+        if task_message:
+            await channel.send(f"Here are the current outstanding tasks!\n{task_message}")
+        else:
+            await channel.send(f'{dripMention} there was an error i think...')
+        
 
 def setup(bot):
     bot.add_cog(TasksCog(bot))
