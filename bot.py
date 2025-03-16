@@ -34,6 +34,7 @@ intents.message_content = True
 intents.reactions = True
 intents.guilds = True
 intents.guild_messages = True
+intents.messages = True
 
 '''
 commands.bot(command_prefix='', intents=intents), we are setting the prefix
