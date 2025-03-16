@@ -59,6 +59,7 @@ db = mysql.connector.connect(
     port=DBport
 )
 cursor = db.cursor()
+cursor_dict = db.cursor(dictionary=True)
 
 '''
 async functions that im adding to run asap ig?
