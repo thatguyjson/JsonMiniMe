@@ -101,7 +101,7 @@ class TasksCog(commands.Cog):
 - ?completetask 2""")
             await channel.send(f"Here are the current outstanding tasks!\n{task_message}")
         else:
-            await channel.send(f'{dripMention} there was an error i think...')
+            await channel.send('no tasks at the moment!')
         
 
 def setup(bot):
