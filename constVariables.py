@@ -16,6 +16,7 @@ VerifyRole = "✅"
 ServerUpdateRole = "✨"
 EventUpdateRole = "☄️"
 BotChangelogRole = "🤖"
+remove_task_emoji = "❌"
 
 LAST_RELEASE = None
 GITHUB_REPO = 'thatguyjson/JsonMiniMe'
