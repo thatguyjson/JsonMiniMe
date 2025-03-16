@@ -104,7 +104,22 @@ class TasksCog(commands.Cog):
 # Here are the current outstanding tasks!
 {task_message}""")
         else:
-            await channel.send('no tasks at the moment!')
+            await channel.send(f"""
+# Welcome to the TO_DO Channel! 
+
+## In order to add a new task please use
+`?newtask <task>`
+### For example:
+- ?newtask Buy cat litter from costco
+
+
+## In order to complete a task, please use
+`?completetask <id>`
+### For example:
+- ?completetask 2
+
+
+# Currently no tasks! Add one using instructions above!""")
         
 
 def setup(bot):
