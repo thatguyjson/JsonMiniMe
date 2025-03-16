@@ -47,10 +47,10 @@ class EventsCog(commands.Cog):
                 10: f"{str(member.mention)} are you https? Because without you, im ://",
                 11: f"Hey {str(member.mention)} if you were a vegetable, you'd be a cute-cumber.",
                 12: f"{str(member.mention)}’s smile could light up the entire server. Like seriously.",
-                13: f"Hold up, did {str(member.mention)} just walk into the room and raise the temperature? 🔥",
+                13: f"Hold up, did {str(member.mention)} just walk into the room and raise the temperature?",
                 14: f"Welcome {str(member.mention)}, you just added 100% more charm to the server.",
                 15: f"Is it just me, or did the server just get 10x cooler the moment {str(member.mention)} showed up?",
-                16: f"{str(member.mention)}’s aura is so bright, I need shades just to look at them 😎",
+                16: f"{str(member.mention)}’s aura is so bright, I need shades just to look at them",
                 17: f"Did someone call for a showstopper? {str(member.mention)} has arrived, people.",
                 18: f"Hey {str(member.mention)}, are you a magician? Because every time you’re around, everything else disappears.",
                 19: f"Just in: {str(member.mention)} is here to steal hearts and look fabulous while doing it.",
@@ -65,7 +65,7 @@ class EventsCog(commands.Cog):
                 28: f"{str(member.mention)}’s glow is so bright, I might need to put on sunglasses inside.",
                 29: f"Attention, everyone: {str(member.mention)} has arrived, and with them, a whole new level of elegance.",
                 30: f"Hey {str(member.mention)}, are you a comet? Because you just rocketed to the top of my 'cool people' list.",
-                31: f"Did {str(member.mention)} just walk in or did the whole server just get a major glow-up? 🤩",
+                31: f"Did {str(member.mention)} just walk in or did the whole server just get a major glow-up?",
                 32: f"Hold on, is {str(member.mention)} secretly a model? Because they just *slayed* this entrance.",
                 33: f"How do you do it, {str(member.mention)}? Look this good and still manage to stay humble?",
                 34: f"Did {str(member.mention)} just set the bar for how to make an entrance? Because that was iconic.",
@@ -177,6 +177,15 @@ class EventsCog(commands.Cog):
             embed.add_field(name="Channel", value=message.channel.name, inline=True)
             embed.add_field(name="Content", value=message.content or "No content", inline=False)
             await staff_channel.send(embed=embed)
+
+    @commands.Cog.listener()
+    async def on_message(self, message):
+        msg_channel_id = message.channel.id
+        if msg_channel_id == TO_DO_CHANNEL_ID:
+            await ctx.send('Hi')
+        
+        else:
+            return
 
 def setup(bot):
     bot.add_cog(EventsCog(bot))
