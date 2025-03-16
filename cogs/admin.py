@@ -150,10 +150,10 @@ class AdminCog(commands.Cog):
     async def newtask(self, ctx, *, message: str = None):
         if message == None:
             await ctx.send("Please try again and enter a task to add")
+            await ctx.message.delete()
             return
 
-        task = message.content
-        cursor.execute(f"INSERT INTO TO_DO (task) VALUES ('{task}')")
+        cursor.execute(f"INSERT INTO TO_DO (task) VALUES ('{message}')")
         await ctx.message.delete()
 
     @commands.command()
