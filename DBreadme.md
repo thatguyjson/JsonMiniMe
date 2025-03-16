@@ -60,3 +60,15 @@ The database is hosted through **PebbleHost MYSQL**. It's called `customer_83400
   }
 ]
 ```
+---
+
+#### TO_DO
+*Just a table used to hold tasks for me and chloe*
+```json
+[
+  {
+    "id": INT + AUTO INCREMENT + PRIMARY KEY
+    "task": "LONGTEXT"
+  }
+]
+```
