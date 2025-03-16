@@ -153,6 +153,7 @@ class AdminCog(commands.Cog):
             await ctx.message.delete()
             return
 
+        message = ctx.message.content
         cursor.execute(f"INSERT INTO TO_DO (task) VALUES ('{message}')")
         await ctx.message.delete()
 
