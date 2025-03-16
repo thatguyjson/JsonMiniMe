@@ -147,22 +147,21 @@ class AdminCog(commands.Cog):
 
     @commands.command()
     @commands.check(is_owner)
-    async def newtask(self, ctx):
-        if not ctx.message.content:
+    async def newtask(self, ctx, *, message: str = None):
+        if message == None:
             await ctx.send("Please try again and enter a task to add")
             return
 
-        task = ctx.message.content
+        task = message.content
         cursor.execute(f"INSERT INTO TO_DO (task) VALUES ('{task}')")
         await ctx.message.delete()
 
     @commands.command()
     @commands.check(is_owner)
-    async def completetask(self, ctx):
-        if not ctx.message.content:
+    async def completetask(self, ctx, *, id: int = 0):
+        if id == 0:
             await ctx.send("Please enter a tasks ID to complete it.")
             return
-        id = ctx.message.content
         cursor.execute(f"delete from TO_DO where id = {id};")
         await ctx.message.delete()
     
