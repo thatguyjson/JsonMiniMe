@@ -33,7 +33,7 @@ class EventsCog(commands.Cog):
     async def on_member_join(self, member):
         welcomeChannel = self.bot.get_channel(welcomeChannel_ID)
         if welcomeChannel is not None:
-            message_index = random.randint(1, 11)
+            message_index = random.randint(1, 40)
             messages = {
                 1: f"DAMN {str(member.mention)} looks GOOD TODAY",
                 2: f"{str(member.mention)} just joined! Hows it goin' cutie :3",
@@ -45,8 +45,37 @@ class EventsCog(commands.Cog):
                 8: f"The way {str(member.mention)} joined the server. Very Demure. Very Mindful",
                 9: f"{str(member.mention)} may look good, but can they handle this craziness? Welcome!",
                 10: f"{str(member.mention)} are you https? Because without you, im ://",
-                11: f"Hey {str(member.mention)} if you were a vegetable, you'd be a cute-cumber."
-            }
+                11: f"Hey {str(member.mention)} if you were a vegetable, you'd be a cute-cumber.",
+                12: f"{str(member.mention)}’s smile could light up the entire server. Like seriously.",
+                13: f"Hold up, did {str(member.mention)} just walk into the room and raise the temperature? 🔥",
+                14: f"Welcome {str(member.mention)}, you just added 100% more charm to the server.",
+                15: f"Is it just me, or did the server just get 10x cooler the moment {str(member.mention)} showed up?",
+                16: f"{str(member.mention)}’s aura is so bright, I need shades just to look at them 😎",
+                17: f"Did someone call for a showstopper? {str(member.mention)} has arrived, people.",
+                18: f"Hey {str(member.mention)}, are you a magician? Because every time you’re around, everything else disappears.",
+                19: f"Just in: {str(member.mention)} is here to steal hearts and look fabulous while doing it.",
+                20: f"Looking at {str(member.mention)} right now... I’m convinced they just broke the scale for 'attractive'.",
+                21: f"Watch out, {str(member.mention)} just entered the server and instantly made it 10x more stylish.",
+                22: f"{str(member.mention)} is proof that beauty can be both stunning and effortless.",
+                23: f"Okay, but {str(member.mention)} is literally out here redefining what 'gorgeous' means.",
+                24: f"{str(member.mention)} walked in like they owned the place, and honestly... they do.",
+                25: f"Is it just me, or did the vibe get way cooler the moment {str(member.mention)} joined?",
+                26: f"That moment when {str(member.mention)} joined and made the server sparkle ✨",
+                27: f"Welcome to the server, {str(member.mention)}! I’m pretty sure you just made the atmosphere 100% more magnetic.",
+                28: f"{str(member.mention)}’s glow is so bright, I might need to put on sunglasses inside.",
+                29: f"Attention, everyone: {str(member.mention)} has arrived, and with them, a whole new level of elegance.",
+                30: f"Hey {str(member.mention)}, are you a comet? Because you just rocketed to the top of my 'cool people' list.",
+                31: f"Did {str(member.mention)} just walk in or did the whole server just get a major glow-up? 🤩",
+                32: f"Hold on, is {str(member.mention)} secretly a model? Because they just *slayed* this entrance.",
+                33: f"How do you do it, {str(member.mention)}? Look this good and still manage to stay humble?",
+                34: f"Did {str(member.mention)} just set the bar for how to make an entrance? Because that was iconic.",
+                35: f"{str(member.mention)} is here, and it's like the whole server just leveled up in style.",
+                36: f"Welcome {str(member.mention)}! The only thing more stunning than your entrance is your vibe.",
+                37: f"Hey {str(member.mention)}, is there a secret to being this fabulous, or were you just born this way?",
+                38: f"I thought I knew what charm looked like until {str(member.mention)} showed up.",
+                39: f"Don’t mind me, I’m just sitting here trying to figure out how {str(member.mention)} manages to look this good all the time.",
+                40: f"Let's be real, {str(member.mention)} is here to make us all look a little less fabulous in comparison",
+}
             welcome_message = messages[message_index]
             await welcomeChannel.send(welcome_message)
 
