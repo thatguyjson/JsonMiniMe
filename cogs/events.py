@@ -183,10 +183,15 @@ class EventsCog(commands.Cog):
         if message.author.bot: # checks if the msg is sent by bot ; if it is, it ignores
             return
         
-        msg_channel_id = message.channel.id
-        msg_channel = self.bot.get_channel(msg_channel_id)
+        msg_channel_id = message.channel.id # grab channel id as a variable
+        msg_channel = self.bot.get_channel(msg_channel_id) # grab channel using id variable
+        msg = message.content # grab the listened msg as a variable to use
         if msg_channel_id == TO_DO_CHANNEL_ID:
-            await msg_channel.send('Hi')
+            bot_msg_1 = await msg_channel.send('Adding your message as a task.')
+            time.sleep(1)
+            task_msg = await msg_channel.send(msg)
+            await task_msg.add_reaction(remove_task_emoji)
+            bot_msg_1.delete()
         
         else:
             return
