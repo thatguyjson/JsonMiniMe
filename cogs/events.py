@@ -180,6 +180,9 @@ class EventsCog(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message):
+        if message.author.bot: # checks if the msg is sent by bot ; if it is, it ignores
+            return
+        
         msg_channel_id = message.channel.id
         msg_channel = self.bot.get_channel(msg_channel_id)
         if msg_channel_id == TO_DO_CHANNEL_ID:
