@@ -69,7 +69,7 @@ class TasksCog(commands.Cog):
             await log_to_channel(f"Error in QOTD task: {e}")
     
     
-    @tasks.loop(hours=3)
+    @tasks.loop(hours=1)
     async def keep_connection_alive(self):
         cursor.execute("SELECT UsedQuotes FROM UsedQuotesDB where id = 3")
         aliveQuote = cursor.fetchone()
