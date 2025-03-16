@@ -147,7 +147,7 @@ class AdminCog(commands.Cog):
 
     @commands.command()
     @commands.check(is_owner)
-    async def newtask(self, ctx, message: str = *):
+    async def newtask(self, ctx, *, message: str = None):
         if message == None:
             await ctx.send("Please try again and enter a task to add")
             await ctx.message.delete()
