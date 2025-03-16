@@ -154,7 +154,8 @@ class AdminCog(commands.Cog):
             return
 
         message = ctx.message.content
-        cursor.execute(f"INSERT INTO TO_DO (task) VALUES ('{message}')")
+        cursor.execute("INSERT INTO TO_DO (task) VALUES (%s)", (message,))
+        db.commit()
         await ctx.message.delete()
 
     @commands.command()
@@ -163,7 +164,8 @@ class AdminCog(commands.Cog):
         if id == 0:
             await ctx.send("Please enter a tasks ID to complete it.")
             return
-        cursor.execute(f"delete from TO_DO where id = {id};")
+        cursor.execute(f"delete from TO_DO where id = %s;", (id,))
+        db.commit()
         await ctx.message.delete()
     
     @commands.command()
