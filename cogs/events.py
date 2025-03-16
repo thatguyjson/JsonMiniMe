@@ -121,7 +121,7 @@ class EventsCog(commands.Cog):
                         await member.add_roles(role)
                         await log_to_channel(f"Assigned {role_name} to {member.display_name}")
                     break
-    
+
     @commands.Cog.listener()
     async def on_raw_reaction_remove(self, payload):
         guild = self.bot.get_guild(payload.guild_id)
@@ -191,7 +191,7 @@ class EventsCog(commands.Cog):
             time.sleep(1)
             task_msg = await msg_channel.send(msg)
             await task_msg.add_reaction(remove_task_emoji)
-            bot_msg_1.delete()
+            await bot_msg_1.delete()
         
         else:
             return
