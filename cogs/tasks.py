@@ -86,7 +86,7 @@ class TasksCog(commands.Cog):
         channel = self.bot.get_channel(TO_DO_CHANNEL_ID)
         await channel.purge(limit=100)
         if task_message:
-            await channel.send("""
+            await channel.send(f"""
 # Welcome to the TO_DO Channel! 
 
 ## In order to add a new task please use
@@ -98,8 +98,11 @@ class TasksCog(commands.Cog):
 ## In order to complete a task, please use
 `?completetask <id>`
 ### For example:
-- ?completetask 2""")
-            await channel.send(f"Here are the current outstanding tasks!\n{task_message}")
+- ?completetask 2
+
+
+# Here are the current outstanding tasks!
+{task_message}""")
         else:
             await channel.send('no tasks at the moment!')
         
