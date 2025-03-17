@@ -78,7 +78,7 @@ class TasksCog(commands.Cog):
           if debug_channel:
             await debug_channel.send(aliveQuote)
 
-    @tasks.loop(minutes=1)
+    @tasks.loop(hours=1)
     async def refresh_to_do_list(self):
         cursor_dict.execute("SELECT * FROM TO_DO")
         tasks = cursor_dict.fetchall()
