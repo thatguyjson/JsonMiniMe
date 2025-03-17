@@ -38,8 +38,6 @@ Admin commands cog
 class AdminCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-
-    tasks_cog = self.bot.get_cog('TasksCog')
     
     @commands.command()
     @commands.check(is_owner)
@@ -154,10 +152,11 @@ class AdminCog(commands.Cog):
             await ctx.send("Please try again and enter a task to add")
             await ctx.message.delete()
             return
-
+        
         cursor.execute("INSERT INTO TO_DO (task) VALUES (%s)", (message,))
         db.commit()
         await ctx.message.delete()
+        tasks_cog = self.bot.get_cog('TasksCog')
         if tasks_cog.refresh_to_do_list.is_running():
             tasks_cog.refresh_to_do_list.stop()
             tasks_cog.refresh_to_do_list.start()
@@ -174,6 +173,7 @@ class AdminCog(commands.Cog):
         cursor.execute(f"delete from TO_DO where id = %s;", (id,))
         db.commit()
         await ctx.message.delete()
+        tasks_cog = self.bot.get_cog('TasksCog')
         if tasks_cog.refresh_to_do_list.is_running():
             tasks_cog.refresh_to_do_list.stop()
             tasks_cog.refresh_to_do_list.start()
