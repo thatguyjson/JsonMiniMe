@@ -39,6 +39,8 @@ class AdminCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+    tasks_cog = self.bot.get_cog('TasksCog')
+    
     @commands.command()
     @commands.check(is_owner)
     async def add_question(self, ctx, *, question=None):
@@ -156,6 +158,12 @@ class AdminCog(commands.Cog):
         cursor.execute("INSERT INTO TO_DO (task) VALUES (%s)", (message,))
         db.commit()
         await ctx.message.delete()
+        if tasks_cog.refresh_to_do_list.is_running():
+            tasks_cog.refresh_to_do_list.stop()
+            tasks_cog.refresh_to_do_list.start()
+            msg = await ctx.send("Refreshed the to do list!")
+            await asyncio.sleep(2)
+            await msg.delete()
 
     @commands.command()
     @commands.check(is_owner)
@@ -166,6 +174,12 @@ class AdminCog(commands.Cog):
         cursor.execute(f"delete from TO_DO where id = %s;", (id,))
         db.commit()
         await ctx.message.delete()
+        if tasks_cog.refresh_to_do_list.is_running():
+            tasks_cog.refresh_to_do_list.stop()
+            tasks_cog.refresh_to_do_list.start()
+            msg = await ctx.send("Refreshed the to do list!")
+            await asyncio.sleep(2)
+            await msg.delete()
     
     @commands.command()
     @commands.check(is_drip)
