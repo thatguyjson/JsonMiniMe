@@ -157,12 +157,6 @@ class AdminCog(commands.Cog):
         db.commit()
         await ctx.message.delete()
         tasks_cog = self.bot.get_cog('TasksCog')
-        if tasks_cog.refresh_to_do_list.is_running():
-            tasks_cog.refresh_to_do_list.stop()
-            tasks_cog.refresh_to_do_list.start()
-            msg = await ctx.send("Refreshed the to do list!")
-            await asyncio.sleep(2)
-            await msg.delete()
 
     @commands.command()
     @commands.check(is_owner)
@@ -174,12 +168,6 @@ class AdminCog(commands.Cog):
         db.commit()
         await ctx.message.delete()
         tasks_cog = self.bot.get_cog('TasksCog')
-        if tasks_cog.refresh_to_do_list.is_running():
-            tasks_cog.refresh_to_do_list.stop()
-            tasks_cog.refresh_to_do_list.start()
-            msg = await ctx.send("Refreshed the to do list!")
-            await asyncio.sleep(2)
-            await msg.delete()
     
     @commands.command()
     @commands.check(is_drip)
